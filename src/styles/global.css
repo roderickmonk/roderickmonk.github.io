@@ -36,12 +36,12 @@ body {
 
   background-image:
     /* major grid */
-    linear-gradient(rgba(15,23,42,0.35) 2px, transparent 2px),
-    linear-gradient(90deg, rgba(15,23,42,0.35) 2px, transparent 2px),
+    linear-gradient(rgba(15,23,42,0.10) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(15,23,42,0.10) 2px, transparent 2px),
 
     /* minor grid */
-    linear-gradient(rgba(100,116,139,0.18) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(100,116,139,0.18) 1px, transparent 1px);
+    linear-gradient(rgba(100,116,139,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100,116,139,0.05) 1px, transparent 1px);
 
   background-size:
     120px 120px,

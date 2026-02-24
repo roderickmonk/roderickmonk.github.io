@@ -1,13 +1,22 @@
+---
+const pathname = Astro.url.pathname;
+
+function isActive(href: string) {
+  if (href === "/") return pathname === "/";
+  return pathname.startsWith(href);
+}
+
+const linkClass = (href: string) =>
+  isActive(href)
+    ? "text-white font-semibold"
+    : "text-blue-200 hover:text-white";
+---
+
 <nav class="flex gap-6 text-sm">
-    <a href="/" class="hover:text-blue-700"> Home </a>
-
-    <a href="/teaching" class="hover:text-blue-700"> Teaching </a>
-
-    <a href="/resources" class="hover:text-blue-700"> Resources </a>
-
-    <a href="/technology" class="hover:text-blue-700"> Technology </a>
-
-    <a href="/about" class="hover:text-blue-700"> About </a>
-
-    <a href="/contact" class="hover:text-blue-700"> Contact </a>
+    <a href="/" class={linkClass("/")}> Home </a>
+    <a href="/teaching" class={linkClass("/teaching")}> Teaching </a>
+    <a href="/resources" class={linkClass("/resources")}> Resources </a>
+    <a href="/technology" class={linkClass("/technology")}> Technology </a>
+    <a href="/about" class={linkClass("/about")}> About </a>
+    <a href="/contact" class={linkClass("/contact")}> Contact </a>
 </nav>
