@@ -4,13 +4,181 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="CV">
 
-<div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+<div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm space-y-10">
 
-<h1 class="text-3xl font-bold mb-6">
-CV
-</h1>
+  <!-- Header -->
+  <div class="border-b border-slate-200 pb-6">
+    <h1 class="text-3xl font-bold">Rod Monk</h1>
+    <p class="text-slate-500 text-sm mt-1">BSc (Hons), Master of Engineering</p>
+    <div class="mt-3 flex flex-wrap gap-4 text-sm text-slate-600">
+      <span>Surrey, BC, Canada</span>
+      <a href="tel:+16049160162" class="hover:text-blue-700">+1 (604) 916-0162</a>
+      <a href="mailto:roderickmonk@gmail.com" class="hover:text-blue-700">roderickmonk@gmail.com</a>
+      <a href="https://github.com/roderickmonk" class="hover:text-blue-700">github.com/roderickmonk</a>
+      <a href="https://linkedin.com/in/rodmonk" class="hover:text-blue-700">linkedin.com/in/rodmonk</a>
+    </div>
+  </div>
 
-<p class="text-slate-500 italic">(CV content to be added)</p>
+  <!-- Professional Summary -->
+  <div>
+    <h2 class="text-lg font-semibold text-blue-800 uppercase tracking-wide mb-3">Professional Summary</h2>
+    <p class="text-slate-700 leading-relaxed">
+      BC-certified teacher and former CTO with 25 years' experience leading AI, cloud, and data-intensive
+      projects. Translates complex technical ideas into engaging, inquiry-driven learning while championing
+      UDL and culturally responsive practice (recent service in a coastal First Nations community). Proven
+      track record of fostering innovation and mentoring students in coding and data science, empowering
+      them to thrive in a digital world.
+    </p>
+  </div>
+
+  <!-- Teaching Experience -->
+  <div>
+    <h2 class="text-lg font-semibold text-blue-800 uppercase tracking-wide mb-4">Teaching Experience</h2>
+    <div class="space-y-4">
+
+      <div class="flex gap-4">
+        <span class="text-sm text-slate-500 w-24 shrink-0">2025–2026</span>
+        <div>
+          <p class="font-semibold text-slate-900">Math and Computer Studies Teacher (Gr 9–12)</p>
+          <p class="text-sm text-slate-600">Xetolacw Community School, Mount Currie, BC</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <span class="text-sm text-slate-500 w-24 shrink-0">2025</span>
+        <div>
+          <p class="font-semibold text-slate-900">Math Teacher (Gr 8–12)</p>
+          <p class="text-sm text-slate-600">Ahousaht Education Authority, Flores Island, BC</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <span class="text-sm text-slate-500 w-24 shrink-0">2018–2021</span>
+        <div>
+          <p class="font-semibold text-slate-900">Lecturer – Intro to Python</p>
+          <p class="text-sm text-slate-600">Vancouver Community College, Vancouver</p>
+          <p class="text-sm text-slate-500">Designed and taught evening courses</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <span class="text-sm text-slate-500 w-24 shrink-0">1983–1986</span>
+        <div>
+          <p class="font-semibold text-slate-900">Computer Science Lecturer</p>
+          <p class="text-sm text-slate-600">National University of Lesotho, Roma, Lesotho</p>
+          <p class="text-sm text-slate-500">Structured programming, algorithms</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <span class="text-sm text-slate-500 w-24 shrink-0">1982–1983</span>
+        <div>
+          <p class="font-semibold text-slate-900">Math Teacher – Grade 13</p>
+          <p class="text-sm text-slate-600">Ottawa-Carleton District School Board, Ottawa, ON</p>
+          <p class="text-sm text-slate-500">Statistics &amp; Calculus</p>
+        </div>
+      </div>
+
+    </div>
+    <p class="mt-4 text-sm text-slate-700"><span class="font-medium">Certification:</span> BC Teaching Certificate</p>
+  </div>
+
+  <!-- Software Engineering Experience -->
+  <div>
+    <h2 class="text-lg font-semibold text-blue-800 uppercase tracking-wide mb-4">Software Engineering Experience</h2>
+    <div class="space-y-5">
+
+      <div class="flex gap-4">
+        <span class="text-sm text-slate-500 w-24 shrink-0">2013–2024</span>
+        <div>
+          <p class="font-semibold text-slate-900">President / Principal Software Engineer</p>
+          <p class="text-sm text-slate-600 mb-1">Digerati Strategies</p>
+          <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1">
+            <li>Developed a real-time video-capture product (Node.js, React, Electron, AWS)</li>
+            <li>Built a deep-RL crypto-trading platform (PyTorch) improving Sharpe ratio by 22%</li>
+            <li>Consulted on secure health-data ingestion; delivered UX/CMS for international clients</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <span class="text-sm text-slate-500 w-24 shrink-0">2000–2012</span>
+        <div>
+          <p class="font-semibold text-slate-900">Chief Technical Officer</p>
+          <p class="text-sm text-slate-600 mb-1">Wenco International Mining Systems, Richmond, BC</p>
+          <p class="text-sm text-slate-600">Led a team of over 30 developers delivering a 24/7 heavy mining equipment fleet management platform, while spearheading a comprehensive transformation of the development process.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <span class="text-sm text-slate-500 w-24 shrink-0">1992–2000</span>
+        <div>
+          <p class="font-semibold text-slate-900">Chief &amp; Senior Software Architect</p>
+          <p class="text-sm text-slate-600 mb-1">CGI Space Division</p>
+          <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1">
+            <li>Architected $30M satellite ground-control system for EUMETSAT</li>
+            <li>Engineered a deployment for the Japanese Meteorological Agency</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <span class="text-sm text-slate-500 w-24 shrink-0">1988–1992</span>
+        <div>
+          <p class="font-semibold text-slate-900">Software Designer</p>
+          <p class="text-sm text-slate-600 mb-1">European Space Operations Centre, Darmstadt, Germany</p>
+          <p class="text-sm text-slate-600">Programmed real-time meteorological applications including a spacecraft ground control system (Unix/C++), respecting IEEE-compliant reliability standards.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Education -->
+  <div>
+    <h2 class="text-lg font-semibold text-blue-800 uppercase tracking-wide mb-3">Education</h2>
+    <ul class="space-y-2 text-sm text-slate-700">
+      <li><span class="font-medium text-slate-900">Post Graduate Certificate in Mathematics Education</span> — Queen's University, Ontario</li>
+      <li><span class="font-medium text-slate-900">Artificial Intelligence Professional Program</span> — Stanford University, California</li>
+      <li><span class="font-medium text-slate-900">Master of Engineering</span> — Carleton University, Ottawa, ON</li>
+      <li><span class="font-medium text-slate-900">BSc (Hons) Pure Mathematics</span> — SFU, Burnaby, BC</li>
+      <li><span class="font-medium text-slate-900">Professional Development Program (PDP)</span> — SFU, Burnaby, BC</li>
+      <li><span class="font-medium text-slate-900">Project Management Certificate</span> — SFU, Burnaby, BC</li>
+    </ul>
+  </div>
+
+  <!-- Technical Skills -->
+  <div>
+    <h2 class="text-lg font-semibold text-blue-800 uppercase tracking-wide mb-3">Technical Skills</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-slate-700">
+      <div><span class="font-medium text-slate-900">Programming:</span> Python, JavaScript / TypeScript, C++</div>
+      <div><span class="font-medium text-slate-900">Web:</span> Node.js, React, Next.js, Angular, RESTful APIs</div>
+      <div><span class="font-medium text-slate-900">AI / ML:</span> PyTorch, Deep RL (DQN, PPO, SAC), NLP, Optuna, GenAI</div>
+      <div><span class="font-medium text-slate-900">Databases:</span> Postgres, DynamoDB, MongoDB, Redis</div>
+      <div><span class="font-medium text-slate-900">Cloud / DevOps:</span> AWS, CDK, Terraform, Docker, CI/CD</div>
+      <div><span class="font-medium text-slate-900">Leadership:</span> Agile, Product Management, Team Coaching</div>
+    </div>
+  </div>
+
+  <!-- Projects -->
+  <div>
+    <h2 class="text-lg font-semibold text-blue-800 uppercase tracking-wide mb-3">Projects</h2>
+    <ul class="space-y-1 text-sm text-slate-700">
+      <li><span class="font-medium text-slate-900">TypeScript:</span> Sudoku Solver</li>
+      <li><span class="font-medium text-slate-900">Python:</span> Trading Simulator</li>
+      <li><span class="font-medium text-slate-900">AI / RL:</span> Reinforcement-Learning Crypto Bot</li>
+    </ul>
+  </div>
+
+  <!-- Other Interests -->
+  <div>
+    <h2 class="text-lg font-semibold text-blue-800 uppercase tracking-wide mb-3">Other Interests</h2>
+    <ul class="space-y-1 text-sm text-slate-700">
+      <li><span class="font-medium text-slate-900">Certification:</span> Certified Toastmaster (CTM)</li>
+      <li><span class="font-medium text-slate-900">Athletics:</span> Tennis (3.5), Pickleball (3.0)</li>
+      <li><span class="font-medium text-slate-900">Recent Reading:</span> <em>Building Thinking Classrooms</em>, <em>Building Large Language Models</em>, <em>AI: A Modern Approach 4e</em>, <em>Designing Data-Intensive Applications</em>, <em>Deep Learning</em>, <em>Weapons of Math Destruction</em>, <em>The Pragmatic Programmer</em></li>
+    </ul>
+  </div>
 
 </div>
 
