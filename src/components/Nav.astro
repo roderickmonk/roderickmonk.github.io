@@ -10,11 +10,36 @@ const linkClass = (href: string) =>
   isActive(href)
     ? "text-white font-semibold"
     : "text-blue-200 hover:text-white";
+
+const teachingActive = pathname.startsWith("/teaching") || pathname.startsWith("/ap");
 ---
 
 <nav class="flex gap-6 text-sm">
     <a href="/" class={linkClass("/")}> Home </a>
-    <a href="/teaching" class={linkClass("/teaching")}> Teaching </a>
+
+    <!-- Teaching dropdown -->
+    <div class="relative group">
+      <span class={`cursor-default select-none ${teachingActive ? "text-white font-semibold" : "text-blue-200 hover:text-white"}`}>
+        Teaching <span class="text-xs">▾</span>
+      </span>
+      <div class="absolute left-0 top-full pt-2 hidden group-hover:block z-20 min-w-max">
+        <div class="rounded-lg bg-white shadow-lg border border-slate-200 overflow-hidden">
+          <a
+            href="/teaching"
+            class={`block px-4 py-2.5 text-sm hover:bg-blue-50 ${isActive("/teaching") ? "text-blue-700 font-semibold" : "text-slate-700 hover:text-blue-700"}`}
+          >
+            BC Curriculum
+          </a>
+          <a
+            href="/ap"
+            class={`block px-4 py-2.5 text-sm hover:bg-blue-50 ${isActive("/ap") ? "text-blue-700 font-semibold" : "text-slate-700 hover:text-blue-700"}`}
+          >
+            College Board AP Program
+          </a>
+        </div>
+      </div>
+    </div>
+
     <a href="/resources" class={linkClass("/resources")}> Resources </a>
     <a href="/technology" class={linkClass("/technology")}> Technology </a>
     <a href="/about" class={linkClass("/about")}> About </a>

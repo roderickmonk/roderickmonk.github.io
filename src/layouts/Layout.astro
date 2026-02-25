@@ -3,7 +3,39 @@ import "../styles/global.css";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 
-const { title = "Math & Computer Studies" } = Astro.props;
+const { title = "" } = Astro.props;
+const pageTitle = title && title !== "Home" ? `Rod Monk · ${title}` : "Rod Monk";
+
+// Seeded PRNG for deterministic layout across renders
+let seed = 20250224;
+const rand = () => {
+  seed = (seed * 1664525 + 1013904223) & 0x7fffffff;
+  return seed / 0x7fffffff;
+};
+
+const symbols = [
+  'α', 'β', 'γ', 'δ', 'ε', 'ζ', 'η', 'θ', 'ι', 'κ', 'λ', 'μ',
+  'ν', 'ξ', 'π', 'ρ', 'σ', 'τ', 'υ', 'φ', 'χ', 'ψ', 'ω',
+  'Γ', 'Δ', 'Θ', 'Λ', 'Ξ', 'Π', 'Σ', 'Φ', 'Ψ', 'Ω',
+  '∑', '∏', '∫', '∬', '∂', '∇', '√', '∞',
+  '≈', '≠', '≡', '≤', '≥', '≪', '≫', '∝',
+  '∀', '∃', '∈', '∉', '∪', '∩', '⊂', '⊃', '⊕', '⊗',
+  '±', '×', '÷', '⊥', '∠', '∥',
+  'ℝ', 'ℤ', 'ℕ', 'ℂ', 'ℚ', 'ℵ',
+  '→', '↔', '⇒', '⇔', '↦',
+  'sin', 'cos', 'tan', 'lim', 'ln', 'log', 'det',
+  'dx', 'dy', 'dt', 'dθ',
+  'f\'', 'f(x)', 'g(x)',
+  'x²', 'x³', 'xⁿ', 'eˣ', 'aₙ', 'x₀',
+];
+
+const items = Array.from({ length: 400 }, () => ({
+  sym:     symbols[Math.floor(rand() * symbols.length)],
+  top:     parseFloat((rand() * 100).toFixed(2)),
+  left:    parseFloat((rand() * 100).toFixed(2)),
+  size:    Math.floor(rand() * 72) + 14,          // 14–86px
+  opacity: parseFloat((rand() * 0.13 + 0.05).toFixed(3)), // 0.05–0.18
+}));
 ---
 
 <!DOCTYPE html>
@@ -11,25 +43,35 @@ const { title = "Math & Computer Studies" } = Astro.props;
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width" />
-<title>{title}</title>
+<title>{pageTitle}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@600;700&display=swap" rel="stylesheet" />
 </head>
 
 <body class="min-h-screen text-slate-900">
 
-<div class="grid-background"></div>
+<div class="math-background" aria-hidden="true">
+  {items.map(({ sym, top, left, size, opacity }) => (
+    <span
+      class="math-sym"
+      style={`top:${top}%;left:${left}%;font-size:${size}px;opacity:${opacity}`}
+    >{sym}</span>
+  ))}
+</div>
 
 <header class="border-b border-blue-900 bg-blue-800">
 <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-5">
 
 <div>
-<div class="text-lg font-semibold text-white">
+<div class="text-xl font-bold text-white">
 <a href="/" class="hover:text-blue-200">
-Math & Computer Studies
+Rod Monk
 </a>
 </div>
 
 <div class="text-sm text-blue-200">
-Senior High School
+Math &amp; Computer Studies · Senior High School
 </div>
 </div>
 
