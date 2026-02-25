@@ -96,9 +96,9 @@ const equations = [
             api.evalCommand("n = Slider[1, 8, 0.5, 0.3, 150, false, true, true, false]");
             api.evalCommand("c = Curve[cos(n*t)*cos(t), cos(n*t)*sin(t), t, 0, 2*pi]");
             api.setColor("c", 30, 64, 175);
-            api.evalCommand("SetLineThickness[c, 4]");
+            api.setLineThickness("c", 4);
             api.setVisible("n", false);
-            api.evalCommand("StartAnimation[]");
+            api.evalCommand("StartAnimation[n]");
           }
         }, true);
         ggbApp.inject("ggb-element");
