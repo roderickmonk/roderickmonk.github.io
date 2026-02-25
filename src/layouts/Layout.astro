@@ -13,28 +13,80 @@ const rand = () => {
   return seed / 0x7fffffff;
 };
 
-const symbols = [
-  'α', 'β', 'γ', 'δ', 'ε', 'ζ', 'η', 'θ', 'ι', 'κ', 'λ', 'μ',
-  'ν', 'ξ', 'π', 'ρ', 'σ', 'τ', 'υ', 'φ', 'χ', 'ψ', 'ω',
-  'Γ', 'Δ', 'Θ', 'Λ', 'Ξ', 'Π', 'Σ', 'Φ', 'Ψ', 'Ω',
-  '∑', '∏', '∫', '∬', '∂', '∇', '√', '∞',
-  '≈', '≠', '≡', '≤', '≥', '≪', '≫', '∝',
-  '∀', '∃', '∈', '∉', '∪', '∩', '⊂', '⊃', '⊕', '⊗',
-  '±', '×', '÷', '⊥', '∠', '∥',
-  'ℝ', 'ℤ', 'ℕ', 'ℂ', 'ℚ', 'ℵ',
-  '→', '↔', '⇒', '⇔', '↦',
-  'sin', 'cos', 'tan', 'lim', 'ln', 'log', 'det',
-  'dx', 'dy', 'dt', 'dθ',
-  'f\'', 'f(x)', 'g(x)',
-  'x²', 'x³', 'xⁿ', 'eˣ', 'aₙ', 'x₀',
+const equations = [
+  // Algebra & geometry (Math 9–10)
+  "x² + y² = r²",
+  "y = mx + b",
+  "a² + b² = c²",
+  "A = πr²",
+  "C = 2πr",
+  "m = (y₂−y₁)/(x₂−x₁)",
+  "d = √((x₂−x₁)²+(y₂−y₁)²)",
+  "(a+b)² = a²+2ab+b²",
+  "(a+b)(a−b) = a²−b²",
+  "V = ⁴⁄₃πr³",
+  // Quadratic (Math 10–11)
+  "x = (−b±√(b²−4ac))/2a",
+  "y = a(x−h)² + k",
+  "Δ = b²−4ac",
+  // Trigonometry (Math 11–12)
+  "sin²θ + cos²θ = 1",
+  "tan θ = sin θ/cos θ",
+  "sin(A+B) = sinA cosB + cosA sinB",
+  "cos(2θ) = cos²θ − sin²θ",
+  "sin(2θ) = 2 sinθ cosθ",
+  "a/sin A = b/sin B",
+  "c² = a²+b²−2ab cosC",
+  "1 + tan²θ = sec²θ",
+  // Exponentials & logs (Math 12)
+  "logₐ(xy) = logₐx + logₐy",
+  "logₐ(x/y) = logₐx − logₐy",
+  "logₐ(xⁿ) = n logₐx",
+  "logₐx = ln x/ln a",
+  "y = Aeᵏˣ",
+  // Sequences & series (Math 11–12)
+  "aₙ = a₁ + (n−1)d",
+  "Sₙ = n/2(a₁+aₙ)",
+  "aₙ = a₁·rⁿ⁻¹",
+  "S∞ = a₁/(1−r), |r|<1",
+  "∑ᵢ₌₁ⁿ i = n(n+1)/2",
+  "∑ᵢ₌₁ⁿ i² = n(n+1)(2n+1)/6",
+  // Statistics (Math 11–12)
+  "P(A∪B) = P(A)+P(B)−P(A∩B)",
+  "P(A|B) = P(A∩B)/P(B)",
+  "z = (x−μ)/σ",
+  "x̄ = Σxᵢ/n",
+  "nCr = n!/(r!(n−r)!)",
+  "nPr = n!/(n−r)!",
+  // Limits & calculus (Pre-calc / Calculus 12)
+  "lim(x→0) sinx/x = 1",
+  "lim(x→∞)(1+1/x)ˣ = e",
+  "f′(x) = lim(h→0)[f(x+h)−f(x)]/h",
+  "d/dx[xⁿ] = nxⁿ⁻¹",
+  "d/dx[sin x] = cos x",
+  "d/dx[cos x] = −sin x",
+  "d/dx[eˣ] = eˣ",
+  "d/dx[ln x] = 1/x",
+  "d/dx[f·g] = f′g + fg′",
+  "d/dx[f/g] = (f′g−fg′)/g²",
+  "d/dx[f(g(x))] = f′(g(x))·g′(x)",
+  "∫xⁿ dx = xⁿ⁺¹/(n+1) + C",
+  "∫eˣ dx = eˣ + C",
+  "∫sin x dx = −cos x + C",
+  "∫cos x dx = sin x + C",
+  "∫1/x dx = ln|x| + C",
+  "∫ₐᵇ f(x) dx = F(b)−F(a)",
+  "e^(iπ) + 1 = 0",
+  "∑ₙ₌₁^∞ 1/n² = π²/6",
 ];
 
-const items = Array.from({ length: 400 }, () => ({
-  sym:     symbols[Math.floor(rand() * symbols.length)],
+const items = Array.from({ length: 350 }, () => ({
+  sym:     equations[Math.floor(rand() * equations.length)],
   top:     parseFloat((rand() * 100).toFixed(2)),
   left:    parseFloat((rand() * 100).toFixed(2)),
-  size:    Math.floor(rand() * 72) + 14,          // 14–86px
-  opacity: parseFloat((rand() * 0.13 + 0.05).toFixed(3)), // 0.05–0.18
+  size:    Math.floor(rand() * 10) + 11,              // 11–20px
+  opacity: parseFloat((rand() * 0.20 + 0.25).toFixed(3)), // 0.25–0.45
+  rotate:  Math.floor(rand() * 41) - 20,              // −20° to +20°
 }));
 ---
 
@@ -53,10 +105,10 @@ const items = Array.from({ length: 400 }, () => ({
 <body class="min-h-screen text-slate-900">
 
 <div class="math-background" aria-hidden="true">
-  {items.map(({ sym, top, left, size, opacity }) => (
+  {items.map(({ sym, top, left, size, opacity, rotate }) => (
     <span
       class="math-sym"
-      style={`top:${top}%;left:${left}%;font-size:${size}px;opacity:${opacity}`}
+      style={`top:${top}%;left:${left}%;font-size:${size}px;opacity:${opacity};transform:rotate(${rotate}deg)`}
     >{sym}</span>
   ))}
 </div>
