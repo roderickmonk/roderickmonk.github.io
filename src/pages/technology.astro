@@ -92,14 +92,13 @@ const equations = [
           showResetIcon: false,
           appletOnLoad: function(api) {
             api.setCoordSystem(-1.7, 1.7, -1.7, 1.7);
-            api.evalCommand("n = Slider[1, 8, 0.5, 1, 150, false, true, false, false]");
+            // Slider[min, max, increment, speed, width, isAngle, isHorizontal, isAnimating, isRandom]
+            api.evalCommand("n = Slider[1, 8, 0.5, 0.3, 150, false, true, true, false]");
             api.evalCommand("c = Curve[cos(n*t)*cos(t), cos(n*t)*sin(t), t, 0, 2*pi]");
             api.setColor("c", 30, 64, 175);
             api.evalCommand("SetLineThickness[c, 4]");
             api.setVisible("n", false);
-            api.evalCommand("SetAnimating[n, true]");
-            api.evalCommand("SetAnimationSpeed[n, 0.3]");
-            api.evalCommand("StartAnimation[n]");
+            api.evalCommand("StartAnimation[]");
           }
         }, true);
         ggbApp.inject("ggb-element");
