@@ -126,10 +126,18 @@ const equations = [
   <script is:inline>
     (function () {
       var container = document.getElementById("tech-swap");
-      if (container && Math.random() > 0.5) {
-        var sections = Array.from(container.children);
-        container.insertBefore(sections[1], sections[0]);
-      }
+      if (!container) return;
+
+      container.style.transition = "opacity 0.4s ease";
+
+      setInterval(function () {
+        container.style.opacity = "0";
+        setTimeout(function () {
+          var sections = Array.from(container.children);
+          container.insertBefore(sections[1], sections[0]);
+          container.style.opacity = "1";
+        }, 400);
+      }, 5000);
     })();
   </script>
 
