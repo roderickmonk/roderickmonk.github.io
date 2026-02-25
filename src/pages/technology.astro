@@ -1,20 +1,136 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+const equations = [
+  {
+    label: "Euler's Identity",
+    src:   "e^{i\\pi} + 1 = 0",
+  },
+  {
+    label: "Quadratic Formula",
+    src:   "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+  },
+  {
+    label: "Basel Problem",
+    src:   "\\sum_{n=1}^{\\infty} \\frac{1}{n^2} = \\frac{\\pi^2}{6}",
+  },
+  {
+    label: "Fundamental Theorem of Calculus",
+    src:   "\\frac{d}{dx}\\int_a^x f(t)\\,dt = f(x)",
+  },
+  {
+    label: "Normal Distribution",
+    src:   "f(x) = \\frac{1}{\\sigma\\sqrt{2\\pi}}\\, e^{-\\frac{1}{2}\\left(\\frac{x-\\mu}{\\sigma}\\right)^2}",
+  },
+];
 ---
 
 <Layout title="Technology">
 
-<div class="rounded-2xl border border-slate-200 border-t-4 border-t-blue-600 bg-white p-8 shadow-sm">
+  <Fragment slot="head">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+    <script is:inline>
+      function initKatex() {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "\\[", right: "\\]", display: true  },
+            { left: "\\(", right: "\\)", display: false },
+          ],
+          throwOnError: false,
+        });
+      }
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="initKatex()"></script>
+  </Fragment>
 
-    <h1 class="text-3xl font-bold mb-6">Desmos Explorations</h1>
+  <div class="space-y-6">
 
-    <div class="relative w-full border rounded-lg overflow-hidden" style="padding-bottom: 56.25%;">
-        <iframe
-            src="https://www.desmos.com/calculator/k4jzw3ujpd?embed"
-            title="Desmos Graphing Calculator"
-            class="absolute inset-0 w-full h-full border-0"></iframe>
+    <!-- Page header — always on top -->
+    <div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+      <h1 class="text-3xl font-bold mb-2">Technology</h1>
+      <p class="text-slate-500 text-sm">Tools and environments used in the classroom.</p>
     </div>
 
-</div>
+    <!-- Swappable sections -->
+    <div id="tech-swap" class="space-y-6">
+
+      <!-- Desmos + Scratch -->
+      <div class="rounded-2xl border border-slate-200 border-t-4 border-t-blue-600 bg-white p-8 shadow-sm">
+        <div class="grid gap-8 md:grid-cols-2">
+
+          <div>
+            <h2 class="text-lg font-semibold mb-1">Desmos</h2>
+            <p class="text-slate-500 text-sm mb-4">An intuitive graphing calculator for visualizing functions, transformations, and mathematical ideas.</p>
+            <div class="relative w-full border rounded-lg overflow-hidden" style="padding-bottom: 75%;">
+              <iframe
+                src="https://www.desmos.com/calculator/k4jzw3ujpd?embed"
+                title="Desmos Graphing Calculator"
+                class="absolute inset-0 w-full h-full border-0"></iframe>
+            </div>
+            <p class="mt-3 text-sm text-slate-600">
+              <a href="https://www.desmos.com" class="text-blue-700 hover:underline">desmos.com</a>
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-lg font-semibold mb-1">Scratch</h2>
+            <p class="text-slate-500 text-sm mb-4">Block-based programming from MIT — a powerful environment for learning logic, events, and creative problem solving.</p>
+            <div class="rounded-lg overflow-hidden border border-slate-200">
+              <img
+                src="/scratch-editor.png"
+                alt="Scratch 3.0 editor showing block-based programming interface"
+                class="w-full h-auto"
+              />
+            </div>
+            <p class="mt-3 text-sm text-slate-600">
+              <a href="https://scratch.mit.edu" class="text-blue-700 hover:underline">scratch.mit.edu</a>
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- LaTeX showcase -->
+      <div class="rounded-2xl border border-slate-200 border-t-4 border-t-blue-600 bg-white p-8 shadow-sm">
+
+        <h2 class="text-2xl font-bold mb-2">Mathematical Typesetting with LaTeX</h2>
+        <p class="text-slate-500 text-sm mb-8">
+          LaTeX is the professional standard for mathematical writing — used in research papers, textbooks, and academic publishing worldwide.
+          Each expression below shows the source on the left and the typeset result on the right.
+        </p>
+
+        <div class="grid grid-cols-2 gap-6 mb-3 px-1">
+          <p class="text-xs font-semibold uppercase tracking-widest text-slate-400">LaTeX Source</p>
+          <p class="text-xs font-semibold uppercase tracking-widest text-slate-400">Rendered</p>
+        </div>
+
+        <div class="divide-y divide-slate-100">
+          {equations.map(eq => (
+            <div class="grid grid-cols-2 gap-6 items-center py-5">
+              <div>
+                <p class="text-xs text-slate-400 mb-2">{eq.label}</p>
+                <pre class="bg-slate-900 text-emerald-400 rounded-lg p-4 text-xs font-mono overflow-x-auto whitespace-pre-wrap" set:text={eq.src}></pre>
+              </div>
+              <div class="flex items-center justify-center min-h-14 text-xl" set:html={`\\[${eq.src}\\]`}></div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+
+    </div><!-- end #tech-swap -->
+
+  </div>
+
+  <script is:inline>
+    (function () {
+      var container = document.getElementById("tech-swap");
+      if (container && Math.random() > 0.5) {
+        var sections = Array.from(container.children);
+        container.insertBefore(sections[1], sections[0]);
+      }
+    })();
+  </script>
 
 </Layout>
