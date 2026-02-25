@@ -1,13 +1,9 @@
 ---
-const base = import.meta.env.BASE_URL; // '/' in dev, '/rod-monk-site/' in prod
 const pathname = Astro.url.pathname;
 
-// Strip base prefix so comparisons always work against plain paths like '/teaching'
-const relPath = "/" + (pathname.slice(base.length) || "");
-
 function isActive(href: string) {
-  if (href === "/") return relPath === "/";
-  return relPath.startsWith(href);
+  if (href === "/") return pathname === "/";
+  return pathname.startsWith(href);
 }
 
 const linkClass = (href: string) =>
@@ -15,11 +11,11 @@ const linkClass = (href: string) =>
     ? "text-white font-semibold"
     : "text-blue-200 hover:text-white";
 
-const teachingActive = relPath.startsWith("/teaching") || relPath.startsWith("/ap");
+const teachingActive = pathname.startsWith("/teaching") || pathname.startsWith("/ap");
 ---
 
 <nav class="flex gap-6 text-sm">
-    <a href={base} class={linkClass("/")}> Home </a>
+    <a href="/" class={linkClass("/")}> Home </a>
 
     <!-- Teaching dropdown -->
     <div class="relative group">
@@ -29,13 +25,13 @@ const teachingActive = relPath.startsWith("/teaching") || relPath.startsWith("/a
       <div class="absolute left-0 top-full pt-2 hidden group-hover:block z-20 min-w-max">
         <div class="rounded-lg bg-white shadow-lg border border-slate-200 overflow-hidden">
           <a
-            href={`${base}teaching`}
+            href="/teaching"
             class={`block px-4 py-2.5 text-sm hover:bg-blue-50 ${isActive("/teaching") ? "text-blue-700 font-semibold" : "text-slate-700 hover:text-blue-700"}`}
           >
             BC Curriculum
           </a>
           <a
-            href={`${base}ap`}
+            href="/ap"
             class={`block px-4 py-2.5 text-sm hover:bg-blue-50 ${isActive("/ap") ? "text-blue-700 font-semibold" : "text-slate-700 hover:text-blue-700"}`}
           >
             College Board AP Program
@@ -44,8 +40,8 @@ const teachingActive = relPath.startsWith("/teaching") || relPath.startsWith("/a
       </div>
     </div>
 
-    <a href={`${base}resources`} class={linkClass("/resources")}> Resources </a>
-    <a href={`${base}technology`} class={linkClass("/technology")}> Technology </a>
-    <a href={`${base}about`} class={linkClass("/about")}> About </a>
-    <a href={`${base}contact`} class={linkClass("/contact")}> Contact </a>
+    <a href="/resources" class={linkClass("/resources")}> Resources </a>
+    <a href="/technology" class={linkClass("/technology")}> Technology </a>
+    <a href="/about" class={linkClass("/about")}> About </a>
+    <a href="/contact" class={linkClass("/contact")}> Contact </a>
 </nav>
