@@ -184,13 +184,17 @@ const equations = [
 
       container.style.transition = "opacity 0.4s ease";
 
-      setInterval(function () {
+      var timer = setInterval(function () {
         container.style.opacity = "0";
         setTimeout(function () {
           container.appendChild(container.firstElementChild);
           container.style.opacity = "1";
         }, 400);
       }, 5000);
+
+      container.addEventListener("click", function () {
+        clearInterval(timer);
+      }, { once: true });
     })();
   </script>
 
