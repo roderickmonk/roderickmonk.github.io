@@ -42,6 +42,43 @@ const equations = [
     </script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="initKatex()"></script>
+    <script is:inline>
+      function initP5() {
+        new p5(function(p) {
+          var phase = 0;
+          var W = 440, H = 286;
+          p.setup = function() {
+            var cnv = p.createCanvas(W, H);
+            cnv.parent('p5-canvas');
+            cnv.style('max-width', '100%');
+            cnv.style('height', 'auto');
+          };
+          p.draw = function() {
+            p.background(15, 23, 42);
+            p.noFill();
+            p.strokeWeight(1.5);
+            var N = 500, a = 3, b = 4;
+            for (var i = 1; i < N; i++) {
+              var t0 = (i - 1) / N * p.TWO_PI;
+              var t1 = i / N * p.TWO_PI;
+              var x0 = W/2 + 190 * p.sin(a * t0 + phase);
+              var y0 = H/2 + 120 * p.sin(b * t0);
+              var x1 = W/2 + 190 * p.sin(a * t1 + phase);
+              var y1 = H/2 + 120 * p.sin(b * t1);
+              p.stroke(
+                p.lerp(56,  168, i/N),
+                p.lerp(189,  85, i/N),
+                p.lerp(248, 247, i/N),
+                p.lerp(80,  255, i/N)
+              );
+              p.line(x0, y0, x1, y1);
+            }
+            phase += 0.008;
+          };
+        });
+      }
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/p5@1.11.2/lib/p5.min.js" onload="initP5()"></script>
   </Fragment>
 
   <div class="space-y-6">
@@ -119,6 +156,23 @@ const equations = [
 
       </div>
 
+      <!-- p5.js -->
+      <div class="rounded-2xl border border-slate-200 border-t-4 border-t-blue-600 bg-white p-8 shadow-sm">
+        <div class="grid gap-8 md:grid-cols-2">
+
+          <div>
+            <h2 class="text-lg font-semibold mb-1">p5.js</h2>
+            <p class="text-slate-500 text-sm mb-4">A JavaScript library for creative coding — bringing mathematical ideas to life through interactive graphics, animations, and simulations. The live animation traces a Lissajous curve (3:4 ratio), the same family of curves produced by an oscilloscope.</p>
+            <p class="text-sm text-slate-600">
+              <a href="https://p5js.org" class="text-blue-700 hover:underline">p5js.org</a>
+            </p>
+          </div>
+
+          <div id="p5-canvas" class="rounded-lg overflow-hidden border border-slate-200"></div>
+
+        </div>
+      </div>
+
     </div><!-- end #tech-swap -->
 
   </div>
@@ -133,8 +187,7 @@ const equations = [
       setInterval(function () {
         container.style.opacity = "0";
         setTimeout(function () {
-          var sections = Array.from(container.children);
-          container.insertBefore(sections[1], sections[0]);
+          container.appendChild(container.firstElementChild);
           container.style.opacity = "1";
         }, 400);
       }, 5000);
