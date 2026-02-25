@@ -216,6 +216,30 @@ const equations = [
         </div>
       </div>
 
+      <!-- Beamer -->
+      <div class="rounded-2xl border border-slate-200 border-t-4 border-t-blue-600 bg-white p-8 shadow-sm">
+        <div class="grid gap-8 md:grid-cols-2">
+
+          <div>
+            <h2 class="text-lg font-semibold mb-1">Beamer</h2>
+            <p class="text-slate-500 text-sm mb-4">LaTeX's presentation framework — used in academia worldwide to produce polished, typeset slide decks with first-class mathematical notation. Step through the deck using the controls, or press ← → on your keyboard.</p>
+            <p class="text-sm text-slate-600">
+              <a href="https://ctan.org/pkg/beamer" class="text-blue-700 hover:underline">ctan.org/pkg/beamer</a>
+            </p>
+          </div>
+
+          <div>
+            <div id="beamer-slide" style="border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;min-height:260px;font-family:Georgia,serif;font-size:14px;"></div>
+            <div class="flex items-center justify-between mt-2">
+              <button id="beamer-prev" class="px-3 py-1 text-sm bg-blue-800 text-white rounded hover:bg-blue-700 disabled:opacity-30 disabled:cursor-not-allowed">◀ Prev</button>
+              <span id="beamer-counter" class="text-sm text-slate-500"></span>
+              <button id="beamer-next" class="px-3 py-1 text-sm bg-blue-800 text-white rounded hover:bg-blue-700 disabled:opacity-30 disabled:cursor-not-allowed">Next ▶</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
     </div><!-- end #tech-swap -->
 
   </div>
@@ -239,6 +263,139 @@ const equations = [
         clearInterval(timer);
       }, { once: true });
     })();
+  </script>
+
+  <script is:inline>
+  (function () {
+    var slides = [
+      {
+        type: 'title',
+        title: 'Mathematics in the<br>Digital Classroom',
+        subtitle: 'A Beamer Showcase &middot; BC Senior High School',
+        author: 'Rod Monk',
+        date: '2025&ndash;2026'
+      },
+      {
+        section: 'Introduction',
+        frametitle: 'What is Beamer?',
+        content: '<p style="color:#475569;font-size:0.8rem;margin-bottom:0.6rem;">A LaTeX document class for creating professional slide decks.</p>'
+          + '<ul style="list-style:none;padding:0;margin:0;">'
+          + '<li style="border-left:3px solid #3b82f6;padding:0.25rem 0 0.25rem 0.6rem;margin-bottom:0.3rem;">First-class mathematical typesetting</li>'
+          + '<li style="border-left:3px solid #3b82f6;padding:0.25rem 0 0.25rem 0.6rem;margin-bottom:0.3rem;">Consistent, publication-quality themes</li>'
+          + '<li style="border-left:3px solid #3b82f6;padding:0.25rem 0 0.25rem 0.6rem;margin-bottom:0.3rem;">PDF output &mdash; portable everywhere</li>'
+          + '<li style="border-left:3px solid #3b82f6;padding:0.25rem 0 0.25rem 0.6rem;">Standard at academic conferences worldwide</li>'
+          + '</ul>'
+      },
+      {
+        section: "Euler's Identity",
+        frametitle: "Euler's Identity",
+        content: '<div style="text-align:center;padding:0.6rem 0 0.4rem;font-size:1.05rem;">\\( e^{i\\pi} + 1 = 0 \\)</div>'
+          + '<div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:4px;padding:0.5rem 0.7rem;font-size:0.78rem;">'
+          + '<strong style="color:#1d4ed8;">Five fundamental constants united:</strong>'
+          + '<ul style="margin:0.3rem 0 0 1rem;padding:0;line-height:1.9;">'
+          + '<li>\\(e\\) &mdash; Euler\'s number</li>'
+          + '<li>\\(i\\) &mdash; the imaginary unit</li>'
+          + '<li>\\(\\pi\\) &mdash; ratio of circumference to diameter</li>'
+          + '<li>\\(1\\) and \\(0\\) &mdash; the multiplicative and additive identities</li>'
+          + '</ul></div>'
+      },
+      {
+        section: 'Algebra',
+        frametitle: 'The Quadratic Formula',
+        content: '<p style="color:#475569;font-size:0.78rem;margin-bottom:0.3rem;">For \\( ax^2 + bx + c = 0 \\), where \\( \\Delta = b^2 - 4ac \\):</p>'
+          + '<div style="text-align:center;padding:0.3rem 0 0.5rem;">\\[ x = \\frac{-b \\pm \\sqrt{\\Delta}}{2a} \\]</div>'
+          + '<div style="display:grid;grid-template-columns:1fr 1fr;gap:0.35rem;font-size:0.75rem;">'
+          + '<div style="background:#fef9c3;border-radius:4px;padding:0.35rem 0.5rem;"><strong style="color:#92400e;">\\(\\Delta &gt; 0\\)</strong><br>Two real roots</div>'
+          + '<div style="background:#dcfce7;border-radius:4px;padding:0.35rem 0.5rem;"><strong style="color:#166534;">\\(\\Delta = 0\\)</strong><br>One repeated root</div>'
+          + '<div style="background:#fce7f3;border-radius:4px;padding:0.35rem 0.5rem;grid-column:span 2;text-align:center;"><strong style="color:#9d174d;">\\(\\Delta &lt; 0\\)</strong> &mdash; Two complex roots</div>'
+          + '</div>'
+      },
+      {
+        section: 'Calculus',
+        frametitle: 'Fundamental Theorem of Calculus',
+        content: '<div style="border-left:4px solid #3b82f6;background:#eff6ff;padding:0.4rem 0.6rem;border-radius:0 4px 4px 0;margin-bottom:0.4rem;">'
+          + '<div style="font-size:0.7rem;color:#1d4ed8;font-weight:600;margin-bottom:0.15rem;">Part I &mdash; Differentiation of an integral</div>'
+          + '<div>\\( \\displaystyle\\frac{d}{dx}\\int_a^x f(t)\\,dt = f(x) \\)</div></div>'
+          + '<div style="border-left:4px solid #22c55e;background:#f0fdf4;padding:0.4rem 0.6rem;border-radius:0 4px 4px 0;margin-bottom:0.4rem;">'
+          + '<div style="font-size:0.7rem;color:#166534;font-weight:600;margin-bottom:0.15rem;">Part II &mdash; Evaluation of a definite integral</div>'
+          + '<div>\\( \\displaystyle\\int_a^b f(x)\\,dx = F(b) - F(a) \\)</div></div>'
+          + '<p style="font-size:0.72rem;color:#64748b;">Differentiation and integration are inverse operations.</p>'
+      },
+      {
+        section: 'Conclusion',
+        frametitle: 'Why Beamer?',
+        content: '<ul style="list-style:none;padding:0;margin:0 0 0.75rem;">'
+          + '<li style="border-left:3px solid #3b82f6;padding:0.25rem 0 0.25rem 0.6rem;margin-bottom:0.3rem;"><strong>Precision</strong> &mdash; every symbol rendered correctly</li>'
+          + '<li style="border-left:3px solid #3b82f6;padding:0.25rem 0 0.25rem 0.6rem;margin-bottom:0.3rem;"><strong>Portability</strong> &mdash; PDF works on any device</li>'
+          + '<li style="border-left:3px solid #3b82f6;padding:0.25rem 0 0.25rem 0.6rem;margin-bottom:0.3rem;"><strong>Professionalism</strong> &mdash; the format of PhD defences and journal talks</li>'
+          + '<li style="border-left:3px solid #3b82f6;padding:0.25rem 0 0.25rem 0.6rem;"><strong>Reproducibility</strong> &mdash; slides as code, version-controlled</li>'
+          + '</ul>'
+          + '<div style="text-align:center;font-size:0.75rem;color:#94a3b8;font-style:italic;">Good mathematics deserves good typography.</div>'
+      }
+    ];
+
+    function buildSlide(i) {
+      var s = slides[i];
+      if (s.type === 'title') {
+        return '<div style="background:linear-gradient(150deg,#1e3a5f,#1d4ed8);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2rem;min-height:260px;">'
+          + '<div style="color:white;font-size:1.15rem;font-weight:bold;line-height:1.35;margin-bottom:0.6rem;">' + s.title + '</div>'
+          + '<div style="color:#bfdbfe;font-size:0.85rem;margin-bottom:1.2rem;">' + s.subtitle + '</div>'
+          + '<div style="background:rgba(255,255,255,0.25);height:1px;width:55%;margin-bottom:1.2rem;"></div>'
+          + '<div style="color:#e0f2fe;font-size:0.82rem;">' + s.author + '</div>'
+          + '<div style="color:#93c5fd;font-size:0.78rem;margin-top:0.2rem;">' + s.date + '</div>'
+          + '</div>';
+      }
+      return '<div style="display:flex;flex-direction:column;min-height:260px;">'
+        + '<div style="background:#1e3a5f;padding:0.35rem 0.7rem;display:flex;justify-content:space-between;">'
+        + '<span style="color:#93c5fd;font-size:0.62rem;">Rod Monk</span>'
+        + '<span style="color:white;font-size:0.62rem;font-weight:600;">' + (s.section || '') + '</span>'
+        + '<span style="color:#93c5fd;font-size:0.62rem;">' + (i + 1) + ' / ' + slides.length + '</span>'
+        + '</div>'
+        + '<div style="background:linear-gradient(90deg,#1d4ed8,#3b82f6);padding:0.45rem 0.7rem;">'
+        + '<span style="color:white;font-size:0.9rem;font-weight:bold;">' + s.frametitle + '</span>'
+        + '</div>'
+        + '<div style="flex:1;padding:0.65rem 0.75rem;background:white;color:#1e293b;font-size:0.82rem;">'
+        + s.content
+        + '</div>'
+        + '<div style="background:#1e3a5f;padding:0.28rem 0.7rem;display:flex;justify-content:space-between;">'
+        + '<span style="color:#93c5fd;font-size:0.6rem;">Mathematics in the Digital Classroom</span>'
+        + '<span style="color:#93c5fd;font-size:0.6rem;">' + (i + 1) + ' / ' + slides.length + '</span>'
+        + '</div>'
+        + '</div>';
+    }
+
+    var current = 0;
+    var slideEl = document.getElementById('beamer-slide');
+    var prevBtn = document.getElementById('beamer-prev');
+    var nextBtn = document.getElementById('beamer-next');
+    var counterEl = document.getElementById('beamer-counter');
+
+    function renderCurrent() {
+      slideEl.innerHTML = buildSlide(current);
+      counterEl.textContent = (current + 1) + ' / ' + slides.length;
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current === slides.length - 1;
+      if (typeof renderMathInElement !== 'undefined') {
+        renderMathInElement(slideEl, {
+          delimiters: [
+            { left: '\\[', right: '\\]', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    prevBtn.addEventListener('click', function () { if (current > 0) { current--; renderCurrent(); } });
+    nextBtn.addEventListener('click', function () { if (current < slides.length - 1) { current++; renderCurrent(); } });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { if (current < slides.length - 1) { current++; renderCurrent(); } }
+      else if (e.key === 'ArrowLeft') { if (current > 0) { current--; renderCurrent(); } }
+    });
+
+    renderCurrent();
+  })();
   </script>
 
 </Layout>
