@@ -14,36 +14,97 @@ const linkClass = (href: string) =>
 const teachingActive = pathname.startsWith("/teaching") || pathname.startsWith("/ap");
 ---
 
-<nav class="flex gap-6 text-sm">
-    <a href="/" class={linkClass("/")}> Home </a>
+<!-- Desktop nav: hidden on mobile -->
+<nav class="hidden md:flex gap-6 text-sm">
+  <a href="/" class={linkClass("/")}>Home</a>
 
-    <!-- Teaching dropdown -->
-    <div class="relative group">
-      <span class={`cursor-default select-none ${teachingActive ? "text-white font-semibold" : "text-blue-200 hover:text-white"}`}>
-        Teaching <span class="text-xs">▾</span>
-      </span>
-      <div class="absolute left-0 top-full pt-2 hidden group-hover:block z-20 min-w-max">
-        <div class="rounded-lg bg-white shadow-lg border border-slate-200 overflow-hidden">
-          <a
-            href="/teaching"
-            class={`block px-4 py-2.5 text-sm hover:bg-blue-50 ${isActive("/teaching") ? "text-blue-700 font-semibold" : "text-slate-700 hover:text-blue-700"}`}
-          >
-            BC Curriculum
-          </a>
-          <a
-            href="/ap"
-            class={`block px-4 py-2.5 text-sm hover:bg-blue-50 ${isActive("/ap") ? "text-blue-700 font-semibold" : "text-slate-700 hover:text-blue-700"}`}
-          >
-            College Board AP Program
-          </a>
-        </div>
+  <div class="relative group">
+    <span class={`cursor-default select-none ${teachingActive ? "text-white font-semibold" : "text-blue-200 hover:text-white"}`}>
+      Teaching <span class="text-xs">▾</span>
+    </span>
+    <div class="absolute left-0 top-full pt-2 hidden group-hover:block z-20 min-w-max">
+      <div class="rounded-lg bg-white shadow-lg border border-slate-200 overflow-hidden">
+        <a href="/teaching" class={`block px-4 py-2.5 text-sm hover:bg-blue-50 ${isActive("/teaching") ? "text-blue-700 font-semibold" : "text-slate-700 hover:text-blue-700"}`}>
+          BC Curriculum
+        </a>
+        <a href="/ap" class={`block px-4 py-2.5 text-sm hover:bg-blue-50 ${isActive("/ap") ? "text-blue-700 font-semibold" : "text-slate-700 hover:text-blue-700"}`}>
+          College Board AP Program
+        </a>
       </div>
     </div>
+  </div>
 
-    <a href="/resources" class={linkClass("/resources")}> Resources </a>
-    <a href="/technology" class={linkClass("/technology")}> Technology </a>
-    <a href="/ai" class={linkClass("/ai")}> AI </a>
-    <a href="/about" class={linkClass("/about")}> About </a>
-    <a href="/cv" class={linkClass("/cv")}> CV </a>
-    <a href="/contact" class={linkClass("/contact")}> Contact </a>
+  <a href="/resources" class={linkClass("/resources")}>Resources</a>
+  <a href="/technology" class={linkClass("/technology")}>Technology</a>
+  <a href="/ai" class={linkClass("/ai")}>AI</a>
+  <a href="/about" class={linkClass("/about")}>About</a>
+  <a href="/cv" class={linkClass("/cv")}>CV</a>
+  <a href="/contact" class={linkClass("/contact")}>Contact</a>
 </nav>
+
+<!-- Mobile: hamburger button -->
+<button
+  id="nav-toggle"
+  class="md:hidden flex flex-col justify-center gap-1.5 w-10 h-10 text-white"
+  aria-label="Open navigation menu"
+  aria-expanded="false"
+  aria-controls="mobile-nav"
+>
+  <span class="block h-0.5 w-6 bg-white rounded"></span>
+  <span class="block h-0.5 w-6 bg-white rounded"></span>
+  <span class="block h-0.5 w-6 bg-white rounded"></span>
+</button>
+
+<!-- Mobile full-screen overlay -->
+<div
+  id="mobile-nav"
+  class="hidden fixed inset-0 z-50 bg-blue-900 overflow-y-auto md:hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Navigation menu"
+>
+  <div class="flex items-center justify-between px-4 py-5 border-b border-blue-700">
+    <span class="text-white font-bold text-xl">Menu</span>
+    <button id="nav-close" class="text-blue-200 hover:text-white p-2" aria-label="Close navigation menu">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+  <nav class="flex flex-col px-6 py-4">
+    <a href="/" class={`py-4 border-b border-blue-800 text-lg ${isActive("/") ? "text-white font-semibold" : "text-blue-200"}`}>Home</a>
+    <a href="/teaching" class={`py-4 border-b border-blue-800 text-lg ${isActive("/teaching") ? "text-white font-semibold" : "text-blue-200"}`}>Teaching — BC Curriculum</a>
+    <a href="/ap" class={`py-4 border-b border-blue-800 text-lg ${isActive("/ap") ? "text-white font-semibold" : "text-blue-200"}`}>Teaching — AP Program</a>
+    <a href="/resources" class={`py-4 border-b border-blue-800 text-lg ${isActive("/resources") ? "text-white font-semibold" : "text-blue-200"}`}>Resources</a>
+    <a href="/technology" class={`py-4 border-b border-blue-800 text-lg ${isActive("/technology") ? "text-white font-semibold" : "text-blue-200"}`}>Technology</a>
+    <a href="/ai" class={`py-4 border-b border-blue-800 text-lg ${isActive("/ai") ? "text-white font-semibold" : "text-blue-200"}`}>AI</a>
+    <a href="/about" class={`py-4 border-b border-blue-800 text-lg ${isActive("/about") ? "text-white font-semibold" : "text-blue-200"}`}>About</a>
+    <a href="/cv" class={`py-4 border-b border-blue-800 text-lg ${isActive("/cv") ? "text-white font-semibold" : "text-blue-200"}`}>CV</a>
+    <a href="/contact" class={`py-4 text-lg ${isActive("/contact") ? "text-white font-semibold" : "text-blue-200"}`}>Contact</a>
+  </nav>
+</div>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const close = document.getElementById('nav-close');
+  const menu = document.getElementById('mobile-nav');
+
+  function openMenu() {
+    menu?.classList.remove('hidden');
+    toggle?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    menu?.classList.add('hidden');
+    toggle?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  toggle?.addEventListener('click', openMenu);
+  close?.addEventListener('click', closeMenu);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+</script>
