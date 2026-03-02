@@ -23,12 +23,12 @@
   <rect x="2" y="2" width="60" height="60" rx="11"
         fill="none" stroke="white" stroke-width="0.75" opacity="0.2"/>
 
-  <!-- Lowercase sigma — standard deviation, formal-language alphabets,
-       and the very σ in z = (x−μ)/σ floating on the site's background -->
+  <!-- Lowercase epsilon — limits/calculus (ε-δ definition), arbitrarily
+       small quantities, and the epsilon in formal language theory (CS) -->
   <text x="33" y="48"
         text-anchor="middle"
         font-family="Georgia, 'Times New Roman', serif"
         font-size="46"
         fill="white"
-        opacity="0.95">σ</text>
+        opacity="0.95">ε</text>
 </svg>
