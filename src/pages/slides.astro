@@ -1,0 +1,43 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Lecture Slides">
+  <div class="space-y-3">
+    <div id="deck-header" class="rounded-2xl border border-slate-200 bg-white px-6 py-4 shadow-sm flex items-center gap-3">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-600 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
+      </svg>
+      <span id="deck-title" class="text-sm font-semibold text-slate-700">Loading…</span>
+    </div>
+
+    <div class="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden" style="height: calc(100vh - 220px); min-height: 480px;">
+      <iframe id="pdf-frame" src="" class="w-full h-full border-0" title="Lecture slides"></iframe>
+    </div>
+
+    <p id="deck-fallback" class="hidden text-center text-xs text-slate-400">
+      PDF not loading?
+      <a id="deck-direct" href="#" class="text-blue-600 hover:underline">Open directly</a>
+    </p>
+  </div>
+</Layout>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const pdf   = params.get("pdf") ?? "";
+  const label = params.get("title") ?? "Lecture Slides";
+
+  const frame    = document.getElementById("pdf-frame") as HTMLIFrameElement;
+  const titleEl  = document.getElementById("deck-title")!;
+  const fallback = document.getElementById("deck-fallback")!;
+  const direct   = document.getElementById("deck-direct") as HTMLAnchorElement;
+
+  if (pdf) {
+    frame.src      = pdf;
+    titleEl.textContent = label;
+    direct.href    = pdf;
+    setTimeout(() => fallback.classList.remove("hidden"), 3000);
+  } else {
+    titleEl.textContent = "No slide deck specified.";
+  }
+</script>
