@@ -1,5 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { decksForCourse } from "../data/beamer-decks";
+
+const ticketIcon = `<svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 20 20" fill="currentColor"><path d="M2 6a2 2 0 012-2h12a2 2 0 012 2v2a2 2 0 100 4v2a2 2 0 01-2 2H4a2 2 0 01-2-2v-2a2 2 0 100-4V6z" /></svg>`;
+const docIcon    = `<svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" /></svg>`;
 ---
 
 <Layout title="Teaching">
@@ -89,6 +93,25 @@ import Layout from "../layouts/Layout.astro";
             <li class="pl-3 border-l-2 border-blue-200">
               <p class="font-semibold text-slate-900 text-sm">Statistics 12</p>
               <p class="text-xs text-slate-500 mt-0.5">Data is everywhere. This course teaches you not to be fooled by it.</p>
+              {decksForCourse("bc-statistics-12").length > 0 && (
+                <div class="mt-2">
+                  <p class="inline-flex items-center gap-1.5 text-xs font-bold text-red-600 uppercase tracking-wider mb-1">
+                    <Fragment set:html={ticketIcon} />
+                    Sample Lecture Slides
+                  </p>
+                  <ul class="space-y-1">
+                    {decksForCourse("bc-statistics-12").map((deck) => (
+                      <li>
+                        <a href={`/slides?pdf=/beamer/${deck.course}/${deck.file}&title=${encodeURIComponent(deck.title)}`}
+                           class="inline-flex items-center gap-1 text-xs text-blue-600 hover:text-blue-800 hover:underline">
+                          <Fragment set:html={docIcon} />
+                          {deck.title}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </li>
           </ul>
         </div>

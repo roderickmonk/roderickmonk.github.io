@@ -10,6 +10,11 @@ export const beamerDecks: BeamerDeck[] = [
     title: "Riemann Sums",
     file: "beamer-reiman-sums.pdf",
   },
+   {
+    course: "bc-statistics-12",
+    title: "Central Limit Theorem",
+    file: "beamer-central-limit-theorem.pdf",
+  },
 ];
 
 /** Returns all decks for a given course slug. */

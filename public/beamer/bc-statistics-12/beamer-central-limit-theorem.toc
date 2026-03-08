@@ -1,0 +1,6 @@
+\beamer@sectionintoc {1}{Motivation}{4}{0}{1}
+\beamer@sectionintoc {2}{Sampling Distributions}{5}{0}{2}
+\beamer@sectionintoc {3}{The Central Limit Theorem}{7}{0}{3}
+\beamer@sectionintoc {4}{Worked Examples}{10}{0}{4}
+\beamer@sectionintoc {5}{Harder Examples}{16}{0}{5}
+\beamer@sectionintoc {6}{Practice}{18}{0}{6}
