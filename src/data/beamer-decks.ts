@@ -14,6 +14,10 @@ export const beamerDecks: BeamerDeck[] = [
     course: "bc-statistics-12",
     title: "Central Limit Theorem",
     file: "beamer-central-limit-theorem.pdf",
+  }, {
+    course: "bc-pre-calc-12",
+    title: "Log Inverses",
+    file: "beamer-log-inverses.pdf",
   },
 ];
 
