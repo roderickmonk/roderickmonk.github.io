@@ -20,7 +20,7 @@ export const beamerDecks: BeamerDeck[] = [
     file: "beamer-log-inverses.pdf",
   },
   {
-    course: "bc-computer-science-12",
+    course: "bc-computer-science-11",
     title: "List Operations",
     file: "beamer-techniques-for-operating-on-lists.pdf",
   },
