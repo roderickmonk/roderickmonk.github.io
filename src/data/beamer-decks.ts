@@ -19,6 +19,13 @@ export const beamerDecks: BeamerDeck[] = [
     title: "Log Inverses",
     file: "beamer-log-inverses.pdf",
   },
+  {
+    course: "bc-computer-science-12",
+    title: "List Operations",
+    file: "beamer-techniques-for-operating-on-lists.pdf",
+  },
+
+  
 ];
 
 /** Returns all decks for a given course slug. */
