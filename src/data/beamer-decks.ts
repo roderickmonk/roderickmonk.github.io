@@ -29,7 +29,11 @@ export const beamerDecks: BeamerDeck[] = [
     title: "Recursion",
     file: "beamer-recursion.pdf",
   },
-
+  {
+    course: "bc-foundations-of-math-11",
+    title: "Optimization",
+    file: "beamer-optimization.pdf",
+  },
 
 ];
 
