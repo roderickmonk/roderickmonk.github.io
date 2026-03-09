@@ -23,6 +23,7 @@ pnpm-debug.log*
 # LaTeX auxiliary files
 *.aux
 *.log
+*.vrb
 
 # jetbrains setting folder
 .idea/
