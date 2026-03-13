@@ -15,7 +15,7 @@ const teachingActive = pathname.startsWith("/teaching") || pathname.startsWith("
 ---
 
 <!-- Desktop nav: hidden on mobile -->
-<nav class="hidden md:flex gap-6 text-sm">
+<nav class="hidden lg:flex gap-6 text-sm">
   <a href="/" class={linkClass("/")}>Home</a>
 
   <div class="relative group">
@@ -44,7 +44,7 @@ const teachingActive = pathname.startsWith("/teaching") || pathname.startsWith("
 <!-- Mobile: hamburger button -->
 <button
   id="nav-toggle"
-  class="md:hidden flex flex-col justify-center gap-1.5 w-10 h-10 text-white"
+  class="lg:hidden flex flex-col justify-center gap-1.5 w-10 h-10 text-white"
   aria-label="Open navigation menu"
   aria-expanded="false"
   aria-controls="mobile-nav"
@@ -57,7 +57,7 @@ const teachingActive = pathname.startsWith("/teaching") || pathname.startsWith("
 <!-- Mobile full-screen overlay -->
 <div
   id="mobile-nav"
-  class="hidden fixed inset-0 z-50 bg-blue-900 overflow-y-auto md:hidden"
+  class="hidden fixed inset-0 z-50 bg-blue-900 overflow-y-auto lg:hidden"
   role="dialog"
   aria-modal="true"
   aria-label="Navigation menu"
