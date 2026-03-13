@@ -11,7 +11,11 @@ import Layout from "../layouts/Layout.astro";
       <span id="deck-title" class="text-sm font-semibold text-slate-700">Loading…</span>
     </div>
 
-    <div class="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden" style="height: calc(100vh - 220px); min-height: 480px;">
+    <div id="mobile-notice" class="hidden rounded-2xl border border-slate-200 bg-white p-8 shadow-sm text-center">
+      <p class="text-slate-600 text-sm">Sample lecture slides are best viewed on a laptop or desktop.</p>
+    </div>
+
+    <div id="pdf-container" class="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden" style="height: calc(100vh - 220px); min-height: 480px;">
       <iframe id="pdf-frame" src="" class="w-full h-full border-0" title="Lecture slides"></iframe>
     </div>
 
@@ -27,15 +31,23 @@ import Layout from "../layouts/Layout.astro";
   const pdf   = params.get("pdf") ?? "";
   const label = params.get("title") ?? "Lecture Slides";
 
-  const frame    = document.getElementById("pdf-frame") as HTMLIFrameElement;
-  const titleEl  = document.getElementById("deck-title")!;
-  const fallback = document.getElementById("deck-fallback")!;
-  const direct   = document.getElementById("deck-direct") as HTMLAnchorElement;
+  const frame     = document.getElementById("pdf-frame") as HTMLIFrameElement;
+  const container = document.getElementById("pdf-container")!;
+  const notice    = document.getElementById("mobile-notice")!;
+  const titleEl   = document.getElementById("deck-title")!;
+  const fallback  = document.getElementById("deck-fallback")!;
+  const direct    = document.getElementById("deck-direct") as HTMLAnchorElement;
 
-  if (pdf) {
-    frame.src      = pdf;
+  const isMobile = window.matchMedia("(max-width: 767px)").matches;
+
+  if (isMobile) {
+    container.classList.add("hidden");
+    notice.classList.remove("hidden");
+    titleEl.textContent = label || "Lecture Slides";
+  } else if (pdf) {
+    frame.src = pdf;
     titleEl.textContent = label;
-    direct.href    = pdf;
+    direct.href = pdf;
     setTimeout(() => fallback.classList.remove("hidden"), 3000);
   } else {
     titleEl.textContent = "No slide deck specified.";
